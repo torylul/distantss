@@ -1,0 +1,116 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+.header-container {
+    padding: 10px 30px;
+    display: grid;
+    grid-template-columns: 1fr 3fr minmax(50px, 50px) minmax(100px, 300px);
+    align-items: center;
+    background-color: #1b1b48;
+    justify-items: center; 
+}
+  
+.header-logo{
+    height: 54px;
+    width: 215px;
+    background-repeat: no-repeat;
+}
+
+.contacts-header {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    margin-left: 25px;
+    text-decoration: none;
+}
+
+.block-img-bg > Img {
+      width: 100%;
+      object-fit: contain;
+}
+
+.modal-wrapper.hide {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+button {
+    background-color: #2a3d66;
+    color: white;
+    font-size: 20px;
+    padding: 5px 10px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(206, 206, 206, 0.7);
+    display: flex;
+}
+
+.card-modal {
+    position: relative;
+    margin: auto;
+    min-width: 100px;
+    max-width: 300px;
+    min-height: 200px;
+    background: #fff;
+    border: 1px solid #463333;
+    padding: 20px 20px 10px 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+input {
+    width: 300px;
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#btn_in {
+    margin-top: 0px;
+}
+
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+h2 {
+    text-align: center;
+}
+
+#btn_input {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.user-name {
+    color: white;
+    font-size: 17px;
+}
+
+#error {
+    margin: 10px;
+    width: 300px;
+    height: 30px;
+    color: red;
+}

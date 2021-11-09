@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div><a href="#" class="header-logo"><img src="logo.png"></a></div>
+            <div><a href="#" class="contacts-header">+7 495 322 54 48</a></div>
+            <div><span class="user-name" id="user-name"></span></div>
+            <div><button id="btn_in">Войти</button>
+                <button id="btn_out" class="hide">Выйти</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="block-img-bg">
+            <img src="9.jpg">
+        </div>
+
+        <div class="modal-wrapper hide">
+            <div class="card-modal">
+                <span class="modal-close">&times;</span>
+                <form id="author">
+                    <h2>Авторизация</h2>
+                    <input class="modal_input" id="login" type="text" name="login" placeholder="Логин" required
+                        autocomplete="off"><br><br>
+                    <input class="modal_input" id="password" name="password" type="password" placeholder="Пароль"
+                        required autocomplete="off">
+                    
+                    <button id="btn_input">Войти</button>
+                    <div id="error"> </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<!--<label for="">user name: <input id="text" type="text"></label>
+<button id="btn">Ввести</button>-->
