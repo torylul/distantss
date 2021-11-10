@@ -94,5 +94,6 @@ function showCard(array, e) {
 }
 
 localStorage.setItem("obj", JSON.stringify(cards));
-let arr = JSON.parse(localStorage.getItem("obj"));
-console.log(arr);
+cards = JSON.parse(localStorage.getItem("obj"));
+localStorage.getItem("obj", JSON.stringify(cards));
+console.log(cards);

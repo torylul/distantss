@@ -11,69 +11,73 @@ const btnLog = document.getElementById('btn_input')
 const userNameSpan = document.getElementById('user-name');// спан логин
 
 const author = document.getElementById('author');
+const error = document.getElementById('error');
 
 const login = (user) => {
-btnOn.style.display = 'none';
+    btnOn.style.display = 'none';
 
-btnOut.style.display = 'flex';
-userNameSpan.style.display = 'flex';
-userNameSpan.textContent = user.login;
+    btnOut.style.display = 'flex';
+    userNameSpan.style.display = 'flex';
+    userNameSpan.textContent = user.login;
 
-modalWrapper.style.display = 'none';
+    modalWrapper.style.display = 'none';
 };
 
 const logout = () => {
-btnOn.style.display = 'flex';
+    btnOn.style.display = 'flex';
 
-btnOut.style.display = 'none';
-userNameSpan.style.display = 'flex';
-userNameSpan.textContent = '';
+    btnOut.style.display = 'none';
+    userNameSpan.style.display = 'flex';
+    userNameSpan.textContent = '';
 
-localStorage.removeItem('user');
+    localStorage.removeItem('user');
 };
 
 btnOut.addEventListener('click', logout);
 
 btnOn.addEventListener('click', () => {
-modalWrapper.style.display = 'flex';
+    modalWrapper.style.display = 'flex';
 });
 
 btnClose.addEventListener('click', () => {
-modalWrapper.style.display = 'none';
+    modalWrapper.style.display = 'none';
 });
 
 modalWrapper.addEventListener('click', (e) => {
-if (e.target === e.currentTarget) {
-modalWrapper.style.display = 'none';
-}
+    if (e.target === e.currentTarget) {
+        modalWrapper.style.display = 'none';
+    }
 });
 
 document.addEventListener('keyup', (e) => {
-if (e.key === 'Escape') { modalWrapper.style.display = 'none'; }
+    if (e.key === 'Escape') { modalWrapper.style.display = 'none'; }
 });
 
 author.addEventListener('submit', (e) => {
-e.preventDefault();
-console.log(userNameSpan.value);
+    e.preventDefault();
+    console.log(userNameSpan.value);
 
-if (userName.value.trim().length > 0) {
-const user = {
-login: userName.value,
-password: userPass.value
-};
-
-localStorage.setItem('user', JSON.stringify(user))
-login(user)
-}
-
-else {
-error.textContent = "Вы не заполнили поля!";
-console.log("Вы не заполнили поля!")
-}
+    valid();   
 });
 
+function valid() {
+    if ((userName.value.trim().length > 0) && (userPass.value.trim().length > 0)) {
+        const user = {
+            login: userName.value,
+            password: userPass.value
+        };
+
+        localStorage.setItem('user', JSON.stringify(user))
+        login(user)
+    }
+
+    else {
+        error.textContent = "Вы не заполнили поля!";
+    }
+}
+
 if (localStorage.getItem('user') !== null) {
-login(JSON.parse(localStorage.getItem('user')))
+    login(JSON.parse(localStorage.getItem('user')))
 }
 
 
