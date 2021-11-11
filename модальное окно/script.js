@@ -21,12 +21,23 @@ let cards = [
 ]
 
 let cardsCount = document.querySelector('.cards');
+let deletedCards;
 
 createManyCards(cards, cardsCount);
 
+// function createManyCards(array, cont) {
+//     array.forEach(item => {
+//         cont.insertAdjacentHTML('beforeend', createCard(item));
+//     });
+// }
 function createManyCards(array, cont) {
+    deletedCards = loadFromLocalStorage();
+    cont.innerHTML = '';
+
     array.forEach(item => {
-        cont.insertAdjacentHTML('beforeend', createCard(item));
+        if(!deletedCards.includes(item.id)) {
+           cont.insertAdjacentHTML('beforeend', createCard(item)); 
+        }
     });
 }
 
@@ -51,13 +62,14 @@ function cropText(text, length = 20) {
 const modalWrapper = document.querySelector('.modal-wrapper');
 const btnClose = document.querySelector('.modal-close');
 
-document.querySelectorAll('.btn-info').forEach(btn => {
-    btn.addEventListener('click', showInfo)
-});
-
-document.querySelectorAll('.btn-delete').forEach(btn => {
-    btn.addEventListener('click', deleteCard);
-});
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('btn-delete')) {
+        deleteCard(e);
+    }
+    if (e.target.classList.contains('btn-info')) {
+        showInfo(e);
+    }
+})
 
 btnClose.addEventListener('click', closeModal);
 
@@ -76,8 +88,14 @@ function closeModal() {
     modalWrapper.classList.add('hide');
 }
 
+deletedCards = loadFromLocalStorage();
+
 function deleteCard(e) {
     e.target.closest('article.card').remove();
+
+    deletedCards.push(e.target.closest('article.card').id);
+
+    localStorage.setItem('deletedCards', JSON.stringify(deletedCards));
 }
 
 document.addEventListener('keydown', e => {
@@ -86,6 +104,16 @@ document.addEventListener('keydown', e => {
     }
 });
 
+
+
+// document.querySelectorAll('.btn-info').forEach(btn => {
+//     btn.addEventListener('click', showInfo)
+// });
+
+// document.querySelectorAll('.btn-delete').forEach(btn => {
+//     btn.addEventListener('click', deleteCards);
+// });
+
 function showCard(array, e) {
     let { image, head, body } = array.find(item => item.id === e.target.closest('article.card').id);
     document.querySelector('.card-modal-left > img').src = image;
@@ -93,7 +121,13 @@ function showCard(array, e) {
     document.querySelector('.card-modal-right > p').textContent = body;
 }
 
-localStorage.setItem("obj", JSON.stringify(cards));
-cards = JSON.parse(localStorage.getItem("obj"));
-localStorage.getItem("obj", JSON.stringify(cards));
-console.log(cards);
+function loadFromLocalStorage() {
+    return JSON.parse(localStorage.getItem('deletedCards')) || [];
+}
+
+const btnShow = document.getElementById('btnShow');
+
+btnShow.addEventListener('click', () => {
+    localStorage.removeItem('deletedCards');
+    createManyCards(cards, cardsCount);
+})

@@ -1,3 +1,9 @@
+body {
+    width: 1200px;
+    margin: 0 auto;
+    display: block;
+}
+
 .cards {
     display: flex;
     flex-direction: row;
@@ -117,4 +123,13 @@
     border: 1px solid black;
     padding: 10px 10px;
     text-align: justify;
+}
+
+#btnShow {
+width: 100%;
+font-family: Century;
+font-size: 18px;
+background-color: #ebecf1;
+padding: 10px 5px;
+margin-top: 10px;
 }
