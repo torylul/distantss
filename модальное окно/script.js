@@ -30,6 +30,7 @@ createManyCards(cards, cardsCount);
 //         cont.insertAdjacentHTML('beforeend', createCard(item));
 //     });
 // }
+
 function createManyCards(array, cont) {
     deletedCards = loadFromLocalStorage();
     cont.innerHTML = '';
@@ -73,6 +74,11 @@ document.addEventListener('click', (e) => {
 
 btnClose.addEventListener('click', closeModal);
 
+let num;
+
+let prevbtn = document.getElementById('prev');
+let nextbtn = document.getElementById('next');
+
 modalWrapper.addEventListener('click', (e) => {
     if (e.target === e.currentTarget) {
         closeModal();
@@ -81,6 +87,7 @@ modalWrapper.addEventListener('click', (e) => {
 
 function showInfo(e) {
     modalWrapper.classList.remove('hide');
+    num = e.target.closest('article.card').id;
     showCard(cards, e);
 }
 
@@ -104,8 +111,6 @@ document.addEventListener('keydown', e => {
     }
 });
 
-
-
 // document.querySelectorAll('.btn-info').forEach(btn => {
 //     btn.addEventListener('click', showInfo)
 // });
@@ -115,11 +120,25 @@ document.addEventListener('keydown', e => {
 // });
 
 function showCard(array, e) {
-    let { image, head, body } = array.find(item => item.id === e.target.closest('article.card').id);
+    let { image, head, body } = array.find(item => item.id == num);
     document.querySelector('.card-modal-left > img').src = image;
     document.querySelector('.card-modal-right > h3').textContent = head;
     document.querySelector('.card-modal-right > p').textContent = body;
 }
+
+prevbtn.addEventListener('click', (e) => {
+    if (num >= 1) {
+        --num;
+        showCard(cards, e);
+    }
+});
+
+nextbtn.addEventListener('click', (e) => {
+    if (num <= cards.length) {
+        num++;
+        showCard(cards, e);
+    }
+});
 
 function loadFromLocalStorage() {
     return JSON.parse(localStorage.getItem('deletedCards')) || [];

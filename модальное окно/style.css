@@ -90,12 +90,26 @@ body {
         text-align: center;
     }
 
-.btn-info {
+.btn-info, #next, #prev {
     background-color: #835858;
     color: #fff0f0;
     border: 2px solid #463333;
     border-radius: 5px;
     font-size: 16px;
+}
+
+.buttonNavigation {
+    position: relative;
+    padding-top: 10px;
+}
+
+#next {
+    position: absolute;
+    right: 0px;
+}
+
+#next {
+    
 }
 
 .btn-delete {
@@ -132,4 +146,8 @@ font-size: 18px;
 background-color: #ebecf1;
 padding: 10px 5px;
 margin-top: 10px;
+}
+
+.hiden {
+    display: none;
 }
